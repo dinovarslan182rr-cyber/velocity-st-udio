@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#101010">
+<meta name="description" content="VELOCITY STUDIO — премиальный детейлинг, уход и защита автомобилей.">
+<title>VELOCITY STUDIO — Детейлинг нового уровня</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --bg: #101010;
+  --surface: #191919;
+  --surface2: #222222;
+  --text: #f5f5f5;
+  --muted: #a2a2a2;
+  --accent: #ff6b2c;
+  --line: rgba(255,255,255,.10);
+  --container: 1200px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Manrope', Arial, sans-serif;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+a { color: inherit; text-decoration: none; }
+button { font: inherit; }
+
+.container {
+  width: min(var(--container), calc(100% - 48px));
+  margin: auto;
+}
+
+header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10;
+  border-bottom: 1px solid var(--line);
+}
+
+.nav {
+  min-height: 84px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.logo {
+  font-size: 21px;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+.logo span { color: var(--accent); }
+
+.nav-links {
+  display: flex;
+  gap: 34px;
+  list-style: none;
+  font-size: 13px;
+  color: #ddd;
+}
+
+.nav-links a:hover { color: var(--accent); }
+
+.nav-button, .button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: var(--accent);
+  color: #111;
+  padding: 14px 23px;
+  border: 0;
+  border-radius: 3px;
+  font-weight: 800;
+  font-size: 13px;
+  cursor: pointer;
+  transition: .25s;
+}
+
+.nav-button:hover, .button:hover {
+  background: #ff8957;
+  transform: translateY(-2px);
+}
+
+.menu-toggle {
+  display: none;
+  color: white;
+  border: 1px solid var(--line);
+  background: transparent;
+  padding: 9px 13px;
+  cursor: pointer;
+}
+
+.hero {
+  min-height: 780px;
+  height: 100svh;
+  max-height: 950px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  background:
+    linear-gradient(90deg, rgba(0,0,0,.91), rgba(0,0,0,.55) 48%, rgba(0,0,0,.15)),
+    linear-gradient(0deg, #101010, transparent 35%),
+    url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=2200&q=85')
+    center / cover no-repeat;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  padding-top: 85px;
+  max-width: 750px;
+}
+
+.eyebrow {
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  margin-bottom: 23px;
+}
+
+.hero h1 {
+  font-size: clamp(43px, 7vw, 88px);
+  line-height: 1.04;
+  letter-spacing: -4px;
+  font-weight: 800;
+  margin-bottom: 25px;
+}
+
+.hero h1 span { color: var(--accent); }
+
+.hero-description {
+  color: #c3c3c3;
+  font-size: 16px;
+  max-width: 480px;
+  margin-bottom: 35px;
+}
+
+.hero-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.button-outline {
+  border: 1px solid rgba(255,255,255,.35);
+  background: rgba(0,0,0,.15);
+  color: white;
+}
+
+.button-outline:hover { border-color: var(--accent); }
+
+.hero-bottom {
+  position: absolute;
+  bottom: 45px;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  color: #ccc;
+  font-size: 11px;
+  letter-spacing: 2px;
+}
+
+section { padding: 110px 0; }
+
+.section-top {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 30px;
+  margin-bottom: 45px;
+}
+
+.section-label {
+  color: var(--accent);
+  font-size: 11px;
+  letter-spacing: 3px;
+  font-weight: 800;
+  margin-bottom: 12px;
+}
+
+.section-title {
+  font-size: clamp(32px, 5vw, 53px);
+  line-height: 1.12;
+  letter-spacing: -2px;
+}
+
+.section-description {
+  max-width: 390px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.service-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  padding: 30px;
+  transition: .3s;
+}
+
+.service-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--accent);
+}
+
+.service-number {
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 800;
+  margin-bottom: 38px;
+}
+
+.service-card h3 {
+  font-size: 21px;
+  margin-bottom: 12px;
+}
+
+.service-card p {
+  color: var(--muted);
+  font-size: 13px;
+  min-height: 65px;
+}
+
+.service-price {
+  margin-top: 24px;
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.service-price span {
+  font-size: 11px;
+  color: var(--muted);
+  font-weight: 400;
+}
+
+.about {
+  background: #171717;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 70px;
+}
+
+.about-image {
+  min-height: 490px;
+  background:
+    linear-gradient(0deg, rgba(0,0,0,.2), transparent),
+    url('https://images.unsplash.com/photo-1601362840469-51e4d8d58785?auto=format&fit=crop&w=1100&q=85')
+    center / cover;
+}
+
+.about-copy p {
+  color: var(--muted);
+  font-size: 14px;
+  margin: 22px 0 30px;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 22px;
+  margin-top: 35px;
+}
+
+.stat strong {
+  display: block;
+  font-size: 32px;
+  color: var(--accent);
+}
+
+.stat span {
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  gap: 14px;
+}
+
+.gallery-item {
+  height: 290px;
+  overflow: hidden;
+  background: var(--surface);
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .5s;
+}
+
+.gallery-item:hover img { transform: scale(1.07); }
+
+.contact {
+  background:
+    radial-gradient(ellipse at 90% 20%, rgba(255,107,44,.14), transparent 40%),
+    #171717;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 70px;
+}
+
+.contact-copy p {
+  color: var(--muted);
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+.contact-form {
+  display: grid;
+  gap: 13px;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 17px;
+  background: #222;
+  color: white;
+  border: 1px solid var(--line);
+  outline: none;
+  font: inherit;
+  font-size: 13px;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus { border-color: var(--accent); }
+
+.contact-form textarea {
+  resize: vertical;
+  min-height: 115px;
+}
+
+.form-message {
+  color: var(--accent);
+  font-size: 12px;
+  min-height: 20px;
+}
+
+footer {
+  padding: 32px 0;
+  border-top: 1px solid var(--line);
+}
+
+.footer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(25px);
+  transition: opacity .7s, transform .7s;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+  }
+  .reveal { opacity: 1; transform: none; }
+}
+
+@media (max-width: 900px) {
+  .nav-links { gap: 17px; }
+  .services-grid { grid-template-columns: repeat(2, 1fr); }
+  .about-grid, .contact-grid { gap: 35px; }
+  .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+  .gallery-item:first-child { grid-column: span 2; }
+}
+
+@media (max-width: 650px) {
+  .container { width: min(100% - 32px, var(--container)); }
+  .nav { min-height: 72px; }
+  .menu-toggle { display: block; }
+  .nav-button { display: none; }
+
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 72px;
+    left: 0;
+    width: 100%;
+    padding: 20px 24px;
+    background: #151515;
+    flex-direction: column;
+    gap: 20px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .nav-links.open { display: flex; }
+
+  .hero {
+    min-height: 720px;
+    height: 90svh;
+    background-position: 58% center;
+  }
+
+  .hero h1 { letter-spacing: -2px; }
+  .hero-description { font-size: 14px; }
+  .hero-bottom { font-size: 9px; bottom: 24px; }
+  section { padding: 75px 0; }
+
+  .section-top {
+    align-items: start;
+    flex-direction: column;
+  }
+
+  .services-grid { grid-template-columns: 1fr; }
+  .service-card p { min-height: auto; }
+  .about-grid, .contact-grid { grid-template-columns: 1fr; }
+  .about-image { min-height: 330px; }
+  .gallery-grid { grid-template-columns: 1fr 1fr; gap: 9px; }
+  .gallery-item { height: 180px; }
+  .gallery-item:first-child { grid-column: span 2; }
+  .stats { gap: 15px; }
+  .footer-inner { flex-direction: column; align-items: flex-start; }
+}
+
+@media (max-width: 380px) {
+  .hero h1 { font-size: 40px; }
+  .hero-actions { align-items: stretch; flex-direction: column; }
+  .gallery-item { height: 145px; }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="container nav">
+    <a class="logo" href="#home">VELOCITY<span>.</span></a>
+
+    <nav aria-label="Основная навигация">
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home">Главная</a></li>
+        <li><a href="#services">Услуги</a></li>
+        <li><a href="#about">О студии</a></li>
+        <li><a href="#gallery">Работы</a></li>
+        <li><a href="#contact">Контакты</a></li>
+      </ul>
+    </nav>
+
+    <a href="#contact" class="nav-button">Оставить заявку ↗</a>
+    <button class="menu-toggle" id="menuToggle"
+      aria-label="Открыть меню" aria-expanded="false">☰</button>
+  </div>
+</header>
+
+<main>
+<section class="hero" id="home">
+  <div class="container hero-content">
+    <div class="eyebrow">Premium automotive care</div>
+    <h1>БОЛЬШЕ,<br>ЧЕМ ПРОСТО <span>БЛЕСК.</span></h1>
+    <p class="hero-description">
+      Профессиональный детейлинг и комплексный уход
+      за автомобилями. Совершенство в каждой детали.
+    </p>
+    <div class="hero-actions">
+      <a href="#services" class="button">Наши услуги ↗</a>
+      <a href="#about" class="button button-outline">О студии</a>
+    </div>
+  </div>
+
+  <div class="container hero-bottom">
+    <span>VELOCITY STUDIO / 2026</span>
+    <span>DETAILING · CARE · PROTECTION</span>
+  </div>
+</section>
+
+<section id="services">
+  <div class="container">
+    <div class="section-top reveal">
+      <div>
+        <div class="section-label">01 / НАШИ УСЛУГИ</div>
+        <h2 class="section-title">Уход без<br>компромиссов.</h2>
+      </div>
+      <p class="section-description">
+        Комплексные решения для сохранения внешнего
+        вида и защиты вашего автомобиля.
+      </p>
+    </div>
+
+    <div class="services-grid">
+      <article class="service-card reveal">
+        <div class="service-number">01 / CARE</div>
+        <h3>Детейлинг-мойка</h3>
+        <p>Бережная очистка кузова и салона с вниманием к каждой детали.</p>
+        <div class="service-price">от 3 000 ₽ <span>/ услуга</span></div>
+      </article>
+
+      <article class="service-card reveal">
+        <div class="service-number">02 / POLISH</div>
+        <h3>Полировка кузова</h3>
+        <p>Восстановление блеска и улучшение внешнего вида лакокрасочного покрытия.</p>
+        <div class="service-price">от 8 000 ₽ <span>/ услуга</span></div>
+      </article>
+
+      <article class="service-card reveal">
+        <div class="service-number">03 / PROTECT</div>
+        <h3>Защитное покрытие</h3>
+        <p>Защита поверхности автомобиля от внешних воздействий.</p>
+        <div class="service-price">от 12 000 ₽ <span>/ услуга</span></div>
+      </article>
+
+      <article class="service-card reveal">
+        <div class="service-number">04 / INTERIOR</div>
+        <h3>Химчистка салона</h3>
+        <p>Глубокая очистка материалов интерьера и уход за деталями.</p>
+        <div class="service-price">от 5 000 ₽ <span>/ услуга</span></div>
+      </article>
+
+      <article class="service-card reveal">
+        <div class="service-number">05 / FILM</div>
+        <h3>Защитная плёнка</h3>
+        <p>Оклейка отдельных элементов для дополнительной защиты кузова.</p>
+        <div class="service-price">от 15 000 ₽ <span>/ услуга</span></div>
+      </article>
+
+      <article class="service-card reveal">
+        <div class="service-number">06 / CUSTOM</div>
+        <h3>Индивидуальный уход</h3>
+        <p>Подбор персонального комплекса услуг под ваш автомобиль.</p>
+        <div class="service-price">По запросу</div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="container about-grid">
+    <div class="about-image reveal" role="img"
+      aria-label="Автомобиль в детейлинг-студии"></div>
+
+    <div class="about-copy reveal">
+      <div class="section-label">02 / О НАС</div>
+      <h2 class="section-title">Точность.<br>Стиль. Результат.</h2>
+      <p>
+        VELOCITY STUDIO — концепция современной
+        детейлинг-студии, где каждая процедура направлена
+        на сохранение эстетики автомобиля.
+        Мы ценим качество, внимание к деталям и
+        индивидуальный подход.
+      </p>
+
+      <a href="#contact" class="button">Связаться с нами ↗</a>
+
+      <div class="stats">
+        <div class="stat">
+          <strong>100%</strong>
+          <span>ВНИМАНИЕ К ДЕТАЛЯМ</span>
+        </div>
+        <div class="stat">
+          <strong>01</strong>
+          <span>ИНДИВИДУАЛЬНЫЙ ПОДХОД</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="gallery">
+  <div class="container">
+    <div class="section-top reveal">
+      <div>
+        <div class="section-label">03 / ГАЛЕРЕЯ</div>
+        <h2 class="section-title">Эстетика<br>в деталях.</h2>
+      </div>
+      <p class="section-description">
+        Визуальная концепция пространства,
+        автомобилей и автомобильной культуры.
+      </p>
+    </div>
+
+    <div class="gallery-grid reveal">
+      <div class="gallery-item">
+        <img loading="lazy"
+          src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1000&q=80"
+          alt="Спортивный автомобиль">
+      </div>
+      <div class="gallery-item">
+        <img loading="lazy"
+          src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=700&q=80"
+          alt="Премиальный автомобиль">
+      </div>
+      <div class="gallery-item">
+        <img loading="lazy"
+          src="https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&fit=crop&w=700&q=80"
+          alt="Автомобиль в студии">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="container contact-grid">
+    <div class="contact-copy reveal">
+      <div class="section-label">04 / КОНТАКТЫ</div>
+      <h2 class="section-title">Ваш автомобиль<br>заслуживает<br><span style="color:var(--accent)">большего.</span></h2>
+      <p>
+        Оставьте заявку, и мы обсудим подходящий
+        комплекс ухода за вашим автомобилем.
+      </p>
+    </div>
+
+    <form class="contact-form reveal" id="contactForm">
+      <input type="text" name="name" placeholder="Ваше имя"
+        autocomplete="name" required maxlength="60">
+      <input type="tel" name="phone" placeholder="Номер телефона"
+        autocomplete="tel" required maxlength="25">
+      <textarea name="message" placeholder="Расскажите, что вас интересует..."
+        maxlength="1000"></textarea>
+      <button class="button" type="submit">Отправить заявку ↗</button>
+      <div class="form-message" id="formMessage" aria-live="polite"></div>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="container footer-inner">
+    <a class="logo" href="#home">VELOCITY<span>.</span></a>
+    <span>© 2026 VELOCITY STUDIO. DEMO PROJECT.</span>
+    <a href="#home">НАВЕРХ ↑</a>
+  </div>
+</footer>
+
+<script>
+const menuToggle = document.getElementById('menuToggle');
+const navLinks = document.getElementById('navLinks');
+
+menuToggle.addEventListener('click', () => {
+  const isOpen = navLinks.classList.toggle('open');
+  menuToggle.setAttribute('aria-expanded', String(isOpen));
+  menuToggle.textContent = isOpen ? '✕' : '☰';
+});
+
+navLinks.querySelectorAll('a').forEach(link => {
+  link.addEventListener('click', () => {
+    navLinks.classList.remove('open');
+    menuToggle.setAttribute('aria-expanded', 'false');
+    menuToggle.textContent = '☰';
+  });
+});
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12 });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+document.getElementById('contactForm').addEventListener('submit', event => {
+  event.preventDefault();
+  const message = document.getElementById('formMessage');
+  message.textContent =
+    'Это демонстрационная форма. Для отправки заявок подключите сервер или сервис обработки форм.';
+});
+</script>
+
+</body>
+</html>
